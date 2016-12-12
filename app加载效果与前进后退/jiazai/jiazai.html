@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>加载效果</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="style/sm.min.css">
+    <script type='text/javascript' src='style/zepto.min.js' charset='utf-8'></script>
+  </head>
+  <body>
+  	<div class="page-group">
+        <div class="page page-current" id="p1">
+			<header class="bar bar-nav">
+			    <h1 class="title">加载效果</h1>
+			</header>
+			<nav class="bar bar-tab">
+			    <a class="tab-item active" href="#">
+			       <span class="tab-label">首页</span>
+			    </a>
+			    <a class="tab-item" href="#">
+			       <span class="tab-label">我</span>
+			    </a>
+			    <a class="tab-item" href="#">
+			       <span class="tab-label">收藏</span>
+			    </a>
+			    <a class="tab-item" href="#">
+			       <span class="tab-label">设置</span>
+			    </a>
+			</nav>
+			<div class="content">
+			    <div class="content-block">
+			       <p><a href="#" class="open-preloader">点我试试</a></p>
+			       <p><a href="#" class="open-preloader-title">再试一次</a></p>
+			       <a href="p2.html">点我翻页(ajax跳转)</a>
+			       <p><a href="#p4">另一页(内联页面)</a></p>
+			    </div>
+			</div>
+		</div>
+		<div class="page" id="p2">
+			<header class="bar bar-nav">
+			    <a class="button-link back">返回</a>
+			</header>
+			<div class="content">
+			    <div class="content-block">
+			    <p>这是第一个内页</p>
+			    <a href="#p3">这里还有内页</a>
+			    </div>
+			</div>
+		</div>
+		<div class="page" id="p3">
+			<header class="bar bar-nav">
+			    <a class="button-link back">返回</a>
+			</header>
+			<div class="content">
+			    <div class="content-block">
+			    <p>这是内页</p>
+			    <a class="back button">这里也可以返回</a><br/>
+			    <a href="#p1">点击这里可以直接跳转到首页</a>
+			    </div>
+			</div>
+		</div>
+		<div class="page" id="p4">
+			<header class="bar bar-nav">
+			    <a class="button-link back pull-left">返回</a>
+			</header>
+			<div class="content">
+			    <div class="content-block">
+			    <p>这是第二个内页</p>
+			    </div>
+			</div>
+		</div>
+	</div>
+  </body>
+    <script type='text/javascript' src='style/sm.min.js' charset='utf-8'></script>
+    <script type="text/javascript" src="style/jiazai.js"></script>
+</html>
