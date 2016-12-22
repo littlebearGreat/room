@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-98">
+	<title>两边固定，中间自适应</title>
+	<style type="text/css">
+	/*思路：三分栏：有left、middle、right三块；
+	left左浮动；right右浮动；middle给个margin把两边被left与right所占的地方空出来就行了*/
+		.box{
+			width: 100%;
+			height: 60px;
+		}
+		.left{
+			float: left;
+
+			width: 100px;
+			height: 60px;
+			background-color: #481FBD;
+			color: #fff;
+			line-height: 60px;
+			text-align: center;
+		}
+		.right{
+			float: right;
+
+			width: 100px;
+			height: 60px;
+			background-color: #D9D70D;
+			color: #000;
+			line-height: 60px;
+			text-align: center;
+		}
+		.mid{
+			background-color: orange;
+			margin-left: 100px;
+			margin-right: 100px;
+
+			height: 60px;
+			line-height: 60px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+	<!-- 下面的三个，自适应的必须放最后写，因为它是块元素 -->
+		<span class="left">左边</span>
+		<span class="right">右边</span>
+		<div class="mid">中间</div>
+	</div>
+</body>
+</html>
