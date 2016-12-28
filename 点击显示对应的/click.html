@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>click</title>
+	<style type="text/css">
+		ul{
+			width: 400px;
+			height: 100px;
+			border: 1px solid #000;
+			margin-top: 20px;
+		}
+		div{
+			width: 200px;
+			height: 40px;
+			background-color: orange;
+			display: none;
+		}
+	</style>
+	<script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+	<ul class="ul">
+		<li>
+			<p>点击我试试1111111</p>
+		</li>
+		<div>我出来了哈</div>
+	</ul>
+	<ul>
+		<li>
+			<p>点击我试试222222222</p>
+		</li>
+		<div>我出来了哈</div>
+	</ul>
+	<ul>
+		<li>
+			<p>点击我试试33333</p>
+		</li>
+		<div>我出来了哈</div>
+	</ul>
+	<ul>
+		<li>
+			<p>点击我试试44444444</p>
+		</li>
+		<div>我出来了哈</div>
+	</ul>
+</body>
+<script type="text/javascript">
+	$(function(){
+		$('li').click(function(){
+			if ($(this).siblings('div').css('display') == 'none') {
+				$(this).siblings('div').css('display','block');
+			}else{
+				$(this).siblings('div').slideUp(100);
+			}
+		})
+	})
+</script>
+</html>
