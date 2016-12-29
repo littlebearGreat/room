@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>日期</title>
+	<script type="text/javascript" src="style/js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style/css/mobiscroll.custom-3.0.0-beta6.min.css">
+	<script type="text/javascript" src="style/js/mobiscroll.custom-3.0.0-beta6.min.js"></script>
+</head>
+<body>
+	<input type="text" id="demo" />
+</body>
+<script type="text/javascript">
+	$(function(){
+		$('#demo').mobiscroll().calendar({
+	       theme: 'bootstrap',
+	       lang: 'zh',
+	       display: 'bottom',
+		});
+		
+	})
+</script>
+</html>
