@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>jq</title>
+	<script type="text/javascript" src="style/js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style/css/mobiscroll.core-2.5.2.css">
+	<link rel="stylesheet" type="text/css" href="style/css/mobiscroll.animation-2.5.2.css">
+	<link rel="stylesheet" type="text/css" href="style/css/mobiscroll.android-ics-2.5.2.css">
+	<script type="text/javascript" src="style/js/mobiscroll.core-2.5.2.js"></script>
+	<script type="text/javascript" src="style/js/mobiscroll.core-2.5.2-zh.js"></script>
+	<script type="text/javascript" src="style/js/mobiscroll.datetime-2.5.1.js"></script>
+	<script type="text/javascript" src="style/js/mobiscroll.datetime-2.5.1-zh.js"></script>
+	<script type="text/javascript" src="style/js/mobiscroll.android-ics-2.5.2.js"></script>
+<body>
+	<input type="text" id="riqi" />
+</body>
+<script type="text/javascript">
+	$(function(){
+		$("#riqi").mobiscroll({
+            preset:'date',
+            theme: 'android-ics light',
+            lang: 'zh',
+            display: 'bottom',
+	    });
+	})
+</script>
+</html>
