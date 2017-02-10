@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>return的用法</title>
+</head>
+<body>
+	<p>这个数是：</p>
+	<h3 id="hh"></h3>
+</body>
+<script>
+	var hh = document.getElementById('hh');
+	 function b(){
+		var a,b,c;
+		a = 3;
+		b = 5;
+		c = a*b;
+		return c;
+	};
+	hh.innerHTML = b();
+</script>
+</html>
+<!-- 1.可以把方法、函数等写成这样的格式，只需要调用即可，也可以多次调用
+ 2.在函数中定义变量，可以不污染大环境
+ 3.当然，也可以传值进去-->
