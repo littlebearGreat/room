@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>切换语言</title>
+</head>
+<body>
+	<p>xiaohua的中文是：</p>
+	<h2 id="ch"></h2>
+</body>
+<script>
+// 切换语言：把下面代码每种成套的语言js脚本写好，点击切换语言后切换其对应的js脚本，再加载一次页面即可
+// ===========================================================================
+PVE = { i18n_msgcat: {"187352614":["小白"],"1101765660":["小绿"],'1677541208':'小红','563154632':['小花']} }
+// PVE是一一对应关系：key与value，不限顺序
+// key的数字代码可以运行下面的函数fnc31a(text)来生成
+// value是自定义的，自己想让key对应什么就写成什么
+// text是原始文字的字符串(如：html代码中p标签中的:xiaohua)
+function fnv31a(text) {
+    var len = text.length;
+    var hval = 0x811c9dc5;
+    for (var i = 0; i < len; i++) {
+	var c = text.charCodeAt(i);
+	hval ^= c;
+	hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+    }
+    hval &= 0x7fffffff;
+    return hval;
+}
+
+function gettext(buf) {
+    var digest = fnv31a(buf);
+    var data = PVE.i18n_msgcat[digest];
+    if (!data) {
+	return buf;
+    }
+    return data[0] || buf;
+}
+// 运行gettext(buf)就可以得到buf对应的value；
+// buf是原始文字的字符串
+// ===========================================================================
+var ch = document.getElementById('ch');
+ch.innerHTML = gettext('xiaohua');
+</script>
+</html>
