@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>搜索</title>
+	<style>
+		.sel{color:orange;}
+	</style>
+	<script src="jquery.min.js"></script>
+</head>
+<body>
+	<input id="txt"  ><br>
+	<ul id="comhtml"></ul>
+<script>
+$(function(){
+	//声明一个数组
+	var bxlist=[];
+	//添加对象到数组
+	bxlist.push({id:1,cname:"中国平安1",tel:"12345465"});
+	bxlist.push({id:2,cname:"中国平安12",tel:"23456"});
+	bxlist.push({id:3,cname:"中国平安23",tel:"223456"});
+	var html="";
+	//拼接html，加到界面div元素内 先使用
+	$.each(bxlist,function(index,item){
+		// html+="<span id='"+item.id+"' class='comItem'>"+ item.cname+"      "+item.tel+"</span><br>";
+		html += "<li id='" + item.id+"' class='comItem'><span>"+ item.cname+"&nbsp;&nbsp;&nbsp;&nbsp;</span><a  href=" + "javascript:;" +">"+item.tel+"</a></li>";
+	});
+	$("#comhtml").html(html);//拼接的html加到div
+	//当文本框值改变的时候
+	$("#txt").change(function(){
+		var t=$(this).val();    //文本框的值
+		$(".comItem").removeClass("sel domm");//移除所有选中的保险公司的样式
+		$(".comItem").children("a").removeClass("sel");
+		if(t.length>0){
+			//如果文本框输入的内容长度大于0      
+			var  slist=[];
+			$.each(bxlist,function(index,item){
+				//循环保险公司信息
+				//如果保险公司名字或电话号码包含输入的内容，将id存储下来
+				//id是界面元素的id  设置样式的时候需要用到
+				if(item.cname.indexOf(t)>-1||item.tel.indexOf(t)>-1){
+					slist.push(item.id);
+				}
+			})
+			//循环存储的id 设置样式
+			$.each(slist,function(index,item){
+				$("#"+item).addClass("sel domm");  // 给li加上一个class，方便搜索后dom操作
+				$('#'+item).children("a").addClass("sel");
+			});
+			$("#comhtml").prepend($(".domm")); // dom操作把搜索到的li移到前面
+		} 
+	});
+})
+</script>
+</body>
+</html>
