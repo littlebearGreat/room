@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>video/HYY</title>
+	<link rel="stylesheet" href="style/css/style.css" />
+	<script src="style/js/jquery.min.js"></script>
+	<script src="style/js/video.js"></script>
+</head>
+<body>
+	<header>
+		<h1>HTML5视频页面</h1>
+	</header>
+	<section id="wrapper">
+		<div class="videoContainer">
+			<video id="myVideo" controls preload="auto" poster="images/poster.jpg" width="600" height="350" >
+				<source src="videos/video.mp4" type="video/mp4" />
+				<source src="videos/video.webm" type="video/webM" />
+				<source src="videos/video.ogv" type="video/ogg" />
+				<p>Your browser does not support the video tag.</p>
+			</video>
+			<div class="caption">html5 video界面 / HYY</div>
+			<div class="control">
+				<div class="topControl">
+					<div class="progress">
+						<span class="bufferBar"></span>
+						<span class="timeBar"></span>
+					</div>
+					<div class="time">
+						<span class="current"></span>
+						<span class="duration"></span> 
+					</div>
+				</div>
+				<div class="btmControl">
+					<div class="btnPlay btn" title="Play/Pause video"></div>
+					<div class="btnStop btn" title="Stop video"></div>
+					<div class="spdText btn">Speed: </div>
+					<div class="btnx1 btn text selected" title="Normal speed">x1</div>
+					<div class="btnx3 btn text" title="Fast forward x3">x3</div>
+					<div class="btnFS btn" title="Switch to full screen"></div>
+					<div class="btnLight lighton btn" title="Turn on/off light"></div>
+					<div class="volume" title="Set volume">
+						<span class="volumeBar"></span>
+					</div>
+					<div class="sound sound2 btn" title="Mute/Unmute sound"></div>
+				</div>
+			</div>
+			<div class="loading"></div>
+		</div>
+	</section>
+	<footer></footer>
+</body>
+</html>
