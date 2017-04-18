@@ -34,6 +34,12 @@ $(function(){
 			function(){nOn()},
 			function(){nOff()}
 		);
+
+		// 如果是select，下面是文字替换，点击后消失，注意选择器
+		// $(contClass).children().click(function(){
+		// 	$(clickClass).children('.checked').text($(this).text());
+		// 	$(contClass).hide();
+		// });
 	};
 
 	selectT('h1','.cont');
