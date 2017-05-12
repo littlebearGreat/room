@@ -1,9 +1,10 @@
 $(function(){
 
-	/*select模拟：
-		clickClass:点击对象的class名称
-		contClass:点击后要展现的内容的class名称
-	*/
+	/** 
+	 * select模拟：
+	 * clickClass:点击对象的class名称
+	 * contClass:点击后要展现的内容的class名称
+	 */
 	function selectT(clickClass,contClass){
 
 		var n = 0; /*定义n，来控制内容的展开与隐藏*/
