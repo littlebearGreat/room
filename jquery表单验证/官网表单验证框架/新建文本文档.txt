@@ -1,0 +1,8 @@
+
+
+		jquery表单验证框架：
+
+			jQuery Validate
+
+
+		http://www.runoob.com/jquery/jquery-plugin-validate.html
