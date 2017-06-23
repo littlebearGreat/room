@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>在线预览</title>
+  <link rel="stylesheet" href="js/viewer.css"/>
+  <link rel="resource" type="application/l10n" href="js/locale/locale.properties"/>
+</head>
+<body>
+  <div class="previewBox" style="height: 100%;"></div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/pd.js"></script>
+<script type="text/javascript" src="js/sw.js"></script>
+<script>
+  documentPath.pdfSrc = 'doc/099.pdf';
+  documentPath.swfSrc = "doc/099.swf";
+  documentPath.run();
+</script>
+<!-- 
+使用方法：
+        1.文档结构不能改变
+        2.引入文件：js/viewer.css
+                    js/locale/locale.properties
+                    js/jquery.js
+                    js/pd.js
+                    js/sw.js
+        3.三个.js文件的先后顺序不能改变
+        4.documentPath.pdfSrc  pdf文件路径（相对于OnlinePreview文件夹的路径）
+        5.documentPath.swfSrc  swf文件路径（相对于OnlinePreview文件夹的路径）
+        6.预览窗口的div标签必须加上类名：previewBox
+        7.显示height/width处理：
+                高版本浏览器pdf自适应宽度
+                低版本浏览器width可在css中用!important设置
+ -->
+</html>
