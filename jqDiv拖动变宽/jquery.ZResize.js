@@ -240,7 +240,7 @@
                 swmove = true;  
                 oleft = parseInt(org.css('left').replace('px', ''));  
             });  
-  console.log('222');
+              console.log('222');
             //拖拽  
             var drag = false;  
             el.on('mousedown', function(e) {  
