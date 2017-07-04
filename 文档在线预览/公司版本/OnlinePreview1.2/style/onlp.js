@@ -30,9 +30,9 @@ var pdfWorkerSrc = '';
         scriptTags[i] = "<script src='" + getMySrc() + jsFiles[i] +
             "'></script>";
     }
-    if (scriptTags.length > 0) {
-        document.write(scriptTags.join(""));
-    };
+    // if (scriptTags.length > 0) {
+    //     document.write(scriptTags.join(""));
+    // };
 
     // dom  pdf.js   flexpaper
     var pdstr = '<div id="pdfH" style="height: 100%;" tabindex="1" class="loadingInProgress"><div id="outerContainer" >'
@@ -74,53 +74,80 @@ var pdfWorkerSrc = '';
         + '#mozPrintCallback-shim .progress-actions {clear: both;}</style>'
         + '<div class="mozPrintCallback-dialog-box"><!-- TODO: Localise the following strings -->Preparing document for printing...<div class="progress-row"><progress value="0" max="100"></progress><span class="relative-progress">0%</span></div><div class="progress-actions"><input type="button" value="Cancel" class="mozPrintCallback-cancel"></div></div></div></div>';
 
-    var swstr = '<div id="index-play" style="height:100%;"></div>';
+    var swstr = '<p class="flashSign1" style="font-size:16px;line-height:100px;text-align:center;display:none;">flash版本需要大于10.x，请<a style="font-size:20px;color:blue;" href="https://get2.adobe.com/cn/flashplayer/">点击此处</a>升级您的flash</p>'
+                +'<p class="flashSign2" style="font-size:16px;line-height:100px;text-align:center;display:none;">您的电脑没有安装flash，请<a style="font-size:20px;color:blue;" href="https://get2.adobe.com/cn/flashplayer/">点击此处</a>安装flash</p>'
+                +'<div id="index-play" style="height:100%;"></div>';
 
     // 检测flash方法
-    function flashChecker(){
-        var hasFlash=0;         //是否安装了flash
-        var flashVersion=0; //flash版本
-        var isIE=/*@cc_on!@*/0;      //是否IE浏览器
-
-        if(isIE){
-            var swf = new ActiveXObject('ShockwaveFlash.ShockwaveFlash'); 
-            if(swf) {
-                hasFlash=1;
-                VSwf=swf.GetVariable("$version");
-                flashVersion=parseInt(VSwf.split(" ")[1].split(",")[0]); 
+    function checkflashversion(){
+        win = window;
+        doc = document;
+        nav = navigator;
+        UNDEF = "undefined";
+        OBJECT = "object";
+        SHOCKWAVE_FLASH = "Shockwave Flash";
+        SHOCKWAVE_FLASH_AX = "ShockwaveFlash.ShockwaveFlash";
+        FLASH_MIME_TYPE = "application/x-shockwave-flash";
+        EXPRESS_INSTALL_ID = "SWFObjectExprInst";
+        ON_READY_STATE_CHANGE = "onreadystatechange";
+        var w3cdom = typeof doc.getElementById != UNDEF && typeof doc.getElementsByTagName != UNDEF && typeof doc.createElement != UNDEF,
+            u = nav.userAgent.toLowerCase(),
+            p = nav.platform.toLowerCase(),
+            windows = p ? /win/.test(p) : /win/.test(u),
+            mac = p ? /mac/.test(p) : /mac/.test(u),
+            webkit = /webkit/.test(u) ? parseFloat(u.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")) : false, // returns either the webkit version or false if not webkit
+            ie = !+"\v1", // feature detection based on Andrea Giammarchi's solution: http://webreflection.blogspot.com/2009/01/32-bytes-to-know-if-your-browser-is-ie.html
+            playerVersion = [0,0,0],
+            d = null;
+        if (typeof nav.plugins != UNDEF && typeof nav.plugins[SHOCKWAVE_FLASH] == OBJECT) {
+            d = nav.plugins[SHOCKWAVE_FLASH].description;
+            if (d && !(typeof nav.mimeTypes != UNDEF && nav.mimeTypes[FLASH_MIME_TYPE] && !nav.mimeTypes[FLASH_MIME_TYPE].enabledPlugin)) { // navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin indicates whether plug-ins are enabled or disabled in Safari 3+
+                plugin = true;
+                ie = false; // cascaded feature detection for Internet Explorer
+                d = d.replace(/^.*\s+(\S+\s+\S+$)/, "$1");
+                playerVersion[0] = parseInt(d.replace(/^(.*)\..*$/, "$1"), 10);
+                playerVersion[1] = parseInt(d.replace(/^.*\.(.*)\s.*$/, "$1"), 10);
+                playerVersion[2] = /[a-zA-Z]/.test(d) ? parseInt(d.replace(/^.*[a-zA-Z]+(.*)$/, "$1"), 10) : 0;
             }
-        }else{
-        if (navigator.plugins && navigator.plugins.length > 0){
-            var swf=navigator.plugins["Shockwave Flash"];
-                if (swf){
-                    hasFlash=1;
-                    var words = swf.description.split(" ");
-                    for (var i = 0; i < words.length; ++i){
-                        if (isNaN(parseInt(words[i]))) continue;
-                        flashVersion = parseInt(words[i]);
+        }
+        else if (typeof win.ActiveXObject != UNDEF) {
+            try {
+                var a = new ActiveXObject(SHOCKWAVE_FLASH_AX);
+                if (a) { // a will return null when ActiveX is disabled
+                    d = a.GetVariable("$version");
+                    if (d) {
+                        ie = true; // cascaded feature detection for Internet Explorer
+                        d = d.split(" ")[1].split(",");
+                        playerVersion = [parseInt(d[0], 10), parseInt(d[1], 10), parseInt(d[2], 10)];
                     }
                 }
             }
-        };
-        return {f:hasFlash,v:flashVersion};
+            catch(e) {}
+        }
+        return { w3:w3cdom, pv:playerVersion, wk:webkit, ie:ie, win:windows, mac:mac };
     }
-
     if (window.applicationCache) {
         // 支持H5
         $('.previewBox').html(pdstr);
+        document.write(scriptTags[0]);
     }else{
-        // 检测flash
-        var fls=flashChecker();
-        var s="";
-        if(fls.f){
-            document.write("您安装了flash,当前flash版本为: "+fls.v+".x");
-        }else{
-            document.write("您没有安装flash"); 
-            // return false; 
-        }; 
-        
         // 不支持H5
         $('.previewBox').html(swstr);
+
+        // 检测flash
+        var fls1=checkflashversion();
+        var s="";
+        if(fls1.pv[0]!=0){
+            if (fls1.pv[0] > 10) {
+                // 加载flexPaper需要的js
+                document.write(scriptTags[1]);
+                document.write(scriptTags[2]);
+            }else{
+                $('#index-play').siblings('.flashSign1').show();
+            }
+        }else{
+            $('#index-play').siblings('.flashSign2').show();
+        }
     }
 
 })();
