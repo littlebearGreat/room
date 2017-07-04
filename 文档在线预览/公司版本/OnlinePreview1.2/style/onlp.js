@@ -143,11 +143,11 @@ var pdfWorkerSrc = '';
                 document.write(scriptTags[1]);
                 document.write(scriptTags[2]);
             }else{
-                $('#previewBox').css('position','relative');
+                $('.previewBox').css('position','relative');
                 $('#index-play').siblings('.flashSign1').show();
             }
         }else{
-            $('#previewBox').css('position','relative');
+            $('.previewBox').css('position','relative');
             $('#index-play').siblings('.flashSign2').show();
         }
     }
