@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>在线预览</title>
+  <script src="style/jquery.js"></script>
+  <style>
+    .previewBox{
+      width: 800px;
+      height: 800px;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="previewBox"></div>
+</body>
+<script src="style/onlp.js"></script>
+<script>
+    onlp.documentPath('doc/099.pdf','doc/099.swf');
+</script>
+<!-- 
+使用方法：
+        1.文档结构不能改变
+        2.插件依赖于jQuery
+        3.引入文件：style/onlp.js,放在body后面加载
+        4.预览窗口的div标签必须加上类名：previewBox
+        5.onlp.documentPathObj('doc/099.pdf',"doc/099.swf");
+            两个参数：第一个是pdf的路径，第二个是swf的路径
+        6.显示height/width处理：
+            只需调整预览窗口的div css属性即可(自适应预览窗口div的大小)
+ -->
+</html>
