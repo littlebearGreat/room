@@ -74,8 +74,8 @@ var pdfWorkerSrc = '';
         + '#mozPrintCallback-shim .progress-actions {clear: both;}</style>'
         + '<div class="mozPrintCallback-dialog-box"><!-- TODO: Localise the following strings -->Preparing document for printing...<div class="progress-row"><progress value="0" max="100"></progress><span class="relative-progress">0%</span></div><div class="progress-actions"><input type="button" value="Cancel" class="mozPrintCallback-cancel"></div></div></div></div>';
 
-    var swstr = '<p class="flashSign1" style="font-size:16px;line-height:100px;text-align:center;display:none;">flash版本需要大于10.x，请<a style="font-size:20px;color:blue;" href="https://get2.adobe.com/cn/flashplayer/">点击此处</a>升级您的flash</p>'
-                +'<p class="flashSign2" style="font-size:16px;line-height:100px;text-align:center;display:none;">您的电脑没有安装flash，请<a style="font-size:20px;color:blue;" href="https://get2.adobe.com/cn/flashplayer/">点击此处</a>安装flash</p>'
+    var swstr = '<p class="flashSign1" style="position:absolute;left:0;top:0;width:100%;font-size:16px;line-height:100px;text-align:center;display:none;">flash版本需要大于10.x，请<a style="font-size:20px;color:blue;" href="https://get2.adobe.com/cn/flashplayer/">点击此处</a>升级您的flash</p>'
+                +'<p class="flashSign2" style="position:absolute;left:0;top:0;width:100%;font-size:16px;line-height:100px;text-align:center;display:none;">您的电脑没有安装flash，请<a style="font-size:20px;color:blue;" href="https://get2.adobe.com/cn/flashplayer/">点击此处</a>安装flash</p>'
                 +'<div id="index-play" style="height:100%;"></div>';
 
     // 检测flash方法
@@ -143,9 +143,11 @@ var pdfWorkerSrc = '';
                 document.write(scriptTags[1]);
                 document.write(scriptTags[2]);
             }else{
+                $('#previewBox').css('position','relative');
                 $('#index-play').siblings('.flashSign1').show();
             }
         }else{
+            $('#previewBox').css('position','relative');
             $('#index-play').siblings('.flashSign2').show();
         }
     }
