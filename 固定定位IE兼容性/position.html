@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>固定定位兼容性</title>
+	<style>
+		body{
+			height: 2000px;
+			margin: 0;
+			padding: 0;
+		}
+		div{ 
+			width: 200px;
+			height: 200px;
+			position: fixed;
+			left: 0;
+			top:200px;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body style="height: 2000px;">
+	<div id="div"></div>
+</body>
+<script>
+	function position(){
+		var n = document.body.clientWidth;
+		var div = document.getElementById('div');
+		var rn = (n - 200) + 'px';
+		div.style.left = rn;
+	};
+
+	position();
+
+	window.addEventListener("resize", function () {
+        setTimeout(position(), 100)
+    });
+</script>
+</html>
