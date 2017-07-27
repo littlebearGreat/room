@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>treeView</title>
+	<script src="angular.min.js"></script>
+	<script type="text/javascript" src="angular.treeview.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/angular.treeview.css">
+</head>
+<body ng-app="myApp" ng-controller="angularTreeview">
+	<div
+	    data-angular-treeview="true"
+		data-tree-id="abc"
+		data-tree-model="treedata"
+		data-node-id="id"
+		data-node-label="label"
+		data-node-children="children" >
+	</div>
+</body>
+<script>
+var app = angular.module('myApp', ['treeview']);
+app.controller('angularTreeview',['$scope',function($scope){
+
+	$scope.treedata = 
+		[
+			{ "label" : "水果", "id" : "role1", "children" : [
+				{ "label" : "小水果", "id" : "role12", "children" : [
+					{ "label" : "圆形水果", "id" : "role121", "children" : [
+						{ "label" : "苹果", "id" : "role1211", "children" : [] },
+						{ "label" : "梨", "id" : "role1212", "children" : [] }
+					]}
+				]},
+				{ "label" : "大水果", "id" : "role11", "children" : [] }
+			]},
+			{ "label" : "玉米", "id" : "role2", "children" : [] },
+			{ "label" : "小麦", "id" : "role3", "children" : [] }
+		];
+
+	$scope.treedata = [
+		{ "label" : "小水果", "id" : "role12", "children" : [
+					{ "label" : "圆形水果", "id" : "role121", "children" : [
+						{ "label" : "苹果", "id" : "role1211", "children" : [] },
+						{ "label" : "梨", "id" : "role1212", "children" : [] }
+					]}
+				]},
+		{ "label" : "小水果", "id" : "role12", "children" : [
+					{ "label" : "圆形水果", "id" : "role121", "children" : [
+						{ "label" : "苹果", "id" : "role1211", "children" : [] },
+						{ "label" : "梨", "id" : "role1212", "children" : [] }
+					]}
+				]},
+		{ "label" : "小水果", "id" : "role12", "children" : [
+					{ "label" : "圆形水果", "id" : "role121", "children" : [
+						{ "label" : "苹果", "id" : "role1211", "children" : [] },
+						{ "label" : "梨", "id" : "role1212", "children" : [] }
+					]}
+				]}
+	]
+
+		$scope.$watch( 'abc.currentNode', function( newObj, oldObj ) {
+		    if( $scope.abc && angular.isObject($scope.abc.currentNode) ) {
+		        console.log( 'Node Selected!!' );
+		        console.log( $scope.abc.currentNode );
+		    }
+		}, false);
+}]);
+
+</script>
+</html>
