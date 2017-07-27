@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>分页1</title>
+</head>
+<body>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=no;">
+ 	<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.3.0/weui.css" />
+ 	<style>
+.vmspan {
+    height:100%;
+    display:inline-block;
+    vertical-align:middle;
+}
+.tabmspan {
+    display:table-cell;
+    vertical-align:middle;
+}
+.vm {
+    vertical-align:middle;
+}
+ul li {
+    float:left;
+    margin-right:13px;
+}
+ul li div {
+    display:table-cell;
+    width:144px;
+    height:144px;
+    border:1px solid red;
+    font-size:18px;
+    text-align:center;
+    vertical-align:middle;
+}
+ul li div img {
+    vertical-align:middle;
+}
+div a {
+    display:table-cell;
+    width:100px;
+    padding:20px;
+    text-align:center;
+    vertical-align:middle;
+    border:1px solid red
+}
+div a img {
+    vertical-align:middle;
+}
+.box {
+    background:black;
+    font-size:30px;
+    color:white;
+    padding-left:20px;
+    line-height:5px;
+}
+.dot {
+    display:inline-block;
+    width:4px;
+    height:4px;
+    background:white;
+    vertical-align:text-bottom;
+}
+
+
+ 	</style>
+
+<div id="app" v-show="mycenter">
+  <h1 class="center underline">点击div  可以查看居中代码</h1>
+  <h2>div中的div 第一种</h2>
+  <div id="dd1" v-on:click="clickme" style="width:200px;height:200px;border:1px solid red;position:relative;">
+    <div style="width:20px;height:20px;margin:auto;position:absolute;top:0;left:0;bottom:0;right:0;background-color: red;"></div>
+  </div>
+  <section></section>
+  <section></section>
+  <h2>div中的div 第二种</h2>
+  <div id="dd2" style="width:200px;height:200px;border:1px solid red;display: table-cell;vertical-align: middle;text-align: center;">
+    <div style="width:20px;height:20px;display: inline-block;background-color: red;vertical-align: middle;"></div>
+  </div>
+  <section></section>
+  <section></section>
+  <h2>div中的div 第三种</h2>
+  <h4>备注:这种方法有一个很明显的不足，就是需要提前知道元素的尺寸</h4>
+  <h4>解决方案：  position: absolute; left: 50%; top: 50%;transform: translate(-50%, -50%);    /* 50%为自身尺寸的一半 */(问题很明显，兼容性不好。IE10+以及其他现代浏览器才支持, IE9(-ms-), IE10+以及其他现代浏览器才支持)</h4>
+  <div id="dd3" style="width:200px;height:200px;border:1px solid red;position:relative;">
+    <div style="width:20px;height:20px;margin:auto;position:absolute;left:50%;top:50%;margin-left:-10px;margin-top:-10px;background-color: red;"></div>
+  </div>
+  <section></section>
+  <section></section>
+  <h4>备注：div 中的div第四种-----子div高度不确定补充</h4>
+  <div  id="dd4"  style="width:200px;height:200px;border:1px solid red;display: table;">
+    <div style="display:table-cell;vertical-align: middle;">123</div>
+  </div>
+  <section></section>
+  <section></section>
+  <!--div中的 img-->
+  <h2>div 中的img 或span（line-height）</h2>
+  <div id="ds1" style="width:200px;height:200px;line-height:200px;border:1px solid red;position:relative;"> <img src="http://www.jq22.com/img/cs/500x500.png" style="vertical-align: middle;" width=45/> <span>123</span> </div>
+  <section></section>
+  <section></section>
+  <h2>div 中的img 或span(display:flex,兼容性待定,移动端可用）</h2>
+  <div id="dss"  style="width:200px;height:200px;border:1px solid red;display: flex;text-align: center;"> <span style="margin:auto">123</span> </div>
+  <section></section>
+  <section></section>
+  <h2>div 中的img 或span(-webkit-box,兼容性待定，移动端可用）</h2>
+  <div id="dsss" style="width:200px;height:200px;border:1px solid red;display: -webkit-box;display: -webkit-box;-webkit-box-pack:center;-webkit-box-align:center;-webkit-box-orient: vertical;text-align: center"> <span>123</span> </div>
+  <section></section>
+  <section></section>
+  <!--div 中的 多行span 和 img-->
+  <h2>div 中的 多行span 和 img</h2>
+  <div id="ds2" style="display: table-cell;vertical-align:middle;width:200px;height:200px;border:1px solid red;position:relative;"> 
+    <!--<img src="http://www.jq22.com/img/cs/500x500.png" />
+                <img src="http://www.jq22.com/img/cs/500x500.png" style="display: block;" />--> 
+    <span>123</span>
+    <p>456</p>
+  </div>
+  <section></section>
+  <section></section>
+  
+  <!--多图片垂直居中一-->
+  <h2>多图片垂直居中一</h2>
+  <ul id="moreimg1">
+    <li>
+      <div><img src="http://www.jq22.com/img/cs/500x500.png" width=45 height=45/></div>
+    </li>
+    <li>
+      <div><img src="http://www.jq22.com/img/cs/500x500.png" width=45 height=45/></div>
+    </li>
+  </ul>
+  <section></section>
+  <section></section>
+  <h2>多图片垂直居中二</h2>
+  <div id="moreimg2"> <a><img src="http://www.jq22.com/img/cs/500x500.png" width=45 height=45/></a> <a><img src="http://www.jq22.com/img/cs/500x500.png" width=45 height=45/></a> </div>
+  <section></section>
+  <section></section>
+  <h3>多图片垂直居中三</h3>
+  <ul id="moreimg3">
+    <li style="width:150px;padding:13px 0; float:left; margin-right:10px; border:1px solid red; text-align:center;"> <img class="show_img" style="vertical-align:middle;" src="http://www.jq22.com/img/cs/500x500.png" width=45/> <img class="alpha_img" style="height:100%;vertical-align:middle;"/> </li>
+  </ul>
+  <section></section>
+  <section></section>
+</div>
+<div id="app1">
+  <q-registerform usertype="0" @success="registersuccess"></q-registerform>
+</div>
+</span> 
+
+</body>
+
+</html>
