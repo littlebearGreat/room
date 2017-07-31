@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>导航</title>
+	<script src="jquery.min.js"></script>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+			font-size: 0;
+			height: 2000px;
+			min-width: 1200px;
+		}
+		ul,li{
+			padding: 0;
+			margin: 0;
+		}
+		.clearfix::before,  
+		.clearfix::after{  
+	        display:table;  
+	        content:'';  
+		}  
+		.clearfix::after{  
+		    clear:both;  
+		} 
+		.nav{
+			position: fixed;
+			top: 0;
+			background-color: #1f2831;
+			width: 100%;
+		}
+		.nav .box{
+			height: 60px;
+			width: 1200px;
+			margin: 0 auto;
+		}
+		.nav ul{
+			list-style: none;
+		}
+		.nav li{
+			float: left;
+			width: 100px;
+			margin: 0 60px;
+			font-size: 20px;
+			color: #fff;
+			line-height: 60px;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		.nav2{
+			position: fixed;
+			top: 60px;
+			width: 100%;
+			background-color: rgba(0,0,0,.7);
+		}
+		.nav2 .box{
+			width: 1200px;
+			margin: 0 auto;
+			position: relative;
+		}
+		.nav2 li{
+			font-size: 16px;
+			color: #fff;
+			cursor: pointer;
+			line-height: 30px;
+			margin: 10px 0;
+		}
+		.nav2 ul{
+			list-style: none;
+		}
+		.nav2 li:hover{
+			color: #2fb26a;
+		}
+		.nav2 .index{
+			float: left;
+			margin-left: 90px;
+			display: none;
+		}
+		.nav2 .pro{
+			float: left;
+			margin-left: 310px;
+			display: none;
+		}
+		.nav2 .shop{
+			float: left;
+			margin-left: 530px;
+			display: none;
+		}
+		.nav2 .newP{
+			float: left;
+			margin-left: 750px;
+			display: none;
+		}
+		.nav2 .about{
+			float: left;
+			margin-left: 950px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav">
+		<div class="box">
+			<ul>
+				<li cn="index">首页</li>
+				<li cn="pro">产品</li>
+				<li cn="shop">商城</li>
+				<li cn="newP">新品</li>
+				<li cn="about">关于我们</li>
+			</ul>
+		</div>
+	</div>
+	<div class="nav2">
+		<div class="box clearfix">
+			<div class="index">
+				<ul>
+					<li>首页</li>
+					<li>夜夜</li>
+					<li>夜晚</li>
+				</ul>
+			</div>
+			<div class="pro">
+				<ul>
+					<li>西瓜</li>
+					<li>苹果</li>
+					<li>香蕉</li>
+					<li>榴莲</li>
+					<li>胶鞋</li>
+				</ul>
+			</div>
+			<div class="shop">
+				<ul>
+					<li>水果商城</li>
+					<li>手机商城</li>
+					<li>电脑商城</li>
+				</ul>
+			</div>
+			<div class="newP">
+				<ul>
+					<li>诺基亚110</li>
+					<li>小黄鸭</li>
+					<li>哈士奇</li>
+					<li>小米手机</li>
+				</ul>
+			</div>
+			<div class="about">
+				<ul>
+					<li>我们的电话：110</li>
+					<li>我们的邮件：110@.com</li>
+					<li>我们的地址：深圳市腾讯大厦</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$(function(){
+		function nav(){
+			var m = false;
+			var className;
+
+			$('.nav2').hover(function(){
+				m = true;
+			},function(){
+				$('.nav2').find(className).hide();
+				m = false;
+			})
+
+			$('.nav li').hover(function(){
+				className = '.' + $(this).attr('cn');
+				$('.nav2').find(className).slideDown(300);
+			},function(){
+				setTimeout(function(){
+					if (!m) {
+						$('.nav2').find(className).hide();
+					};
+				},10)
+			})
+
+		};
+
+		nav();
+	})
+</script>
+</html>

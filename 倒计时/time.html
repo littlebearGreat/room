@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时</title>
+	<script src="jquery.min.js"></script>
+	<style>
+		.box{
+			margin: 100px auto 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<p></p>
+	</div>
+</body>
+<script>
+	$(function(){
+
+		function countDown(futureTime,serverTime) {
+			// var time = '2017,7,31 10:35:00';
+
+			// 创建dom
+			var p = $('<p>');
+			$('.box').append(p);
+
+			var fTime = null,
+				sTime = null;
+
+			if (!futureTime) {
+				alert('请设置将来时间，格式："2017,07,31 09:55:00"');
+				return false;
+			}else{
+				fTime = futureTime;
+			};
+
+			if (serverTime) {
+				sTime = serverTime;
+			};
+
+			// 加0处理函数
+			function addZ(n){
+				if (n < 10) {
+					return ('0' + n);
+				}else{
+					return n;
+				}
+			};
+
+
+			function time() {
+				var stopInt = false;   		/*关闭定时器*/
+
+				var nt; 					/*获取现在的时间*/
+				if (sTime) {
+					nt = new Date(sTime); 	/*服务器时间*/
+				}else{
+					nt = new Date();  		/*本地时间*/
+				};
+				var ft = new Date(fTime);  	/*设置将来的时间*/
+				// var ft = new Date('2017,07,31 09:55:00');
+
+				var nMs = nt.getTime();  	/*获取1970 年 1 月 1 日至今的毫秒数*/
+				var fMs = ft.getTime();  	/*获取1970 年 1 月 1 日至今的毫秒数*/
+
+				var ms = fMs - nMs;   		/*将来时间与现在时间的时间差，ms*/
+
+				var d,h,m,s;  				/*定义倒计时显示的日时分秒*/
+
+				if (ms >= 0) {
+					var num = parseInt(ms / 1000);     	/*现在与将来相差的秒数*/
+					var cd = parseInt(num / 3600 / 24); 			/*天数*/
+					var ch = parseInt(num % (3600*24) / 3600); 		/*小时*/
+					var cm = parseInt(num % (3600*24) % 3600 / 60); /*分钟*/
+					var cs = num % (3600*24) % 3600 % 60;  			/*秒*/
+
+					// 加0处理
+					d = addZ(cd);
+					h = addZ(ch);
+					m = addZ(cm);
+					s = addZ(cs);
+
+				}else{
+					d = '00';
+					h = '00';
+					m = '00';
+					s = '00';
+
+					stopInt = true;
+				};
+
+				var txt = d + '天 / ' + h + '小时 / ' + m + '分 / ' + s + '秒 &nbsp;&nbsp;' + ' 责任险新品优惠截止';
+				
+				p.html('').html(txt);
+
+				if (stopInt) {
+					clearInterval(intv);
+				};
+			};
+
+			var intv = setInterval(time,200);
+		};
+
+		countDown('2017,8,31 11:06:00');
+
+		/** 
+		 *	countDown(futureTime,serverTime)接收两个参数
+		 *	futureTime :倒计时将来的时间
+		 *	serverTime :服务器当前的时间（可不选，不选的话使用用户本地时间）
+		 *	futureTime serverTime 的格式：'2017,7,31 11:06:00'   字符串格式
+		 */
+	})
+</script>
+</html>
