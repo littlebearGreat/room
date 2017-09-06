@@ -19,7 +19,6 @@
 	$(function(){
 
 		function countDown(futureTime,serverTime) {
-			// var time = '2017,7,31 10:35:00';
 
 			// 创建dom
 			var p = $('<p>');
@@ -29,7 +28,7 @@
 				sTime = null;
 
 			if (!futureTime) {
-				alert('请设置将来时间，格式："2017,07,31 09:55:00"');
+				alert('请设置将来时间，格式：[2017,8,31,11,06,00]');
 				return false;
 			}else{
 				fTime = futureTime;
@@ -54,12 +53,16 @@
 
 				var nt; 					/*获取现在的时间*/
 				if (sTime) {
-					nt = new Date(sTime); 	/*服务器时间*/
+					/*服务器时间*/
+					nt = new Date(sTime[0],sTime[1],sTime[2],sTime[3],sTime[4],sTime[5]); 
 				}else{
 					nt = new Date();  		/*本地时间*/
 				};
-				var ft = new Date(fTime);  	/*设置将来的时间*/
-				// var ft = new Date('2017,07,31 09:55:00');
+
+				/*设置将来的时间*/
+				console.log(fTime);
+				var ft = new Date(fTime[0],fTime[1]-1,fTime[2],fTime[3],fTime[4],fTime[5]); 
+				console.log(ft);
 
 				var nMs = nt.getTime();  	/*获取1970 年 1 月 1 日至今的毫秒数*/
 				var fMs = ft.getTime();  	/*获取1970 年 1 月 1 日至今的毫秒数*/
@@ -102,13 +105,13 @@
 			var intv = setInterval(time,200);
 		};
 
-		countDown('2017,8,31 11:06:00');
+		countDown([2017,8,31,11,06,00]);
 
 		/** 
 		 *	countDown(futureTime,serverTime)接收两个参数
 		 *	futureTime :倒计时将来的时间
 		 *	serverTime :服务器当前的时间（可不选，不选的话使用用户本地时间）
-		 *	futureTime serverTime 的格式：'2017,7,31 11:06:00'   字符串格式
+		 *	futureTime serverTime 的格式：[2017,8,31,11,06,00]   数组格式，必须是6个参数
 		 */
 	})
 </script>
