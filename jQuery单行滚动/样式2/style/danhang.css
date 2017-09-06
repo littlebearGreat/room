@@ -1,0 +1,27 @@
+p,
+li,
+ul{
+	margin: 0;
+	padding: 0;
+}
+.box{
+	margin-top: 200px;
+	margin-left: 200px;
+	width: 200px;
+	height: 40px;
+	text-align: center;
+	position: relative;
+	border: 1px solid #999;
+	overflow: hidden;
+}
+.cont{
+	list-style: none;
+	font-size: 16px;
+	width: 200px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+li{
+	line-height: 40px;
+}
