@@ -5,7 +5,7 @@ $(function(){
 		span.text('');
 		var minH = span.height();
 		var m = 0;
-		for (var i = 1; i < txt.length; i++) {
+		for (var i = 1; i < txt.length + 1; i++) {
 			var t = txt.substring(0,i);
 			span.text(t);
 			var nowH = span.height();
