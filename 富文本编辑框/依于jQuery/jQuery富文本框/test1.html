@@ -7,13 +7,30 @@
 	<link rel="stylesheet" type="text/css" href="jquery.notebook.css">
 	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="jquery.notebook.js"></script>
+	<style>
+		.my-editor{
+			border: 1px solid #333;
+			padding: 4px 10px;
+		}
+	</style>
 </head>
 <body>
 	<div class="my-editor"></div>
+	<button class="btn">打印</button>
+	<h2>以下是内容：</h2>
+	<div class="show"></div>
 </body>
 <script>
 	$(document).ready(function(){
 	    $('.my-editor').notebook();
 	});
+
+	$(function(){
+		$('.btn').click(function(){
+			var t = $('.my-editor').html();
+			console.log(t);
+			$('.show').html(t);
+		})
+	})
 </script>
 </html>
