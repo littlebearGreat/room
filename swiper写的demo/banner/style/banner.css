@@ -1,0 +1,14 @@
+/*banner的宽高设置*/
+.swiper-container{
+	height: 400px;
+}
+
+.pic1{
+	background-color: pink;
+}
+.pic2{
+	background-color: green;
+}
+.pic3{
+	background-color: orange;
+}

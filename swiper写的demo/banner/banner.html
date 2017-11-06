@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>banner</title>
+	<link rel="stylesheet" href="style/swiper-3.4.2.min.css">
+	<link rel="stylesheet" href="style/banner.css">
+	<script src="style/swiper-3.4.2.min.js"></script>
+</head>
+<body>
+	<div class="swiper-container">
+		<!-- 图，swiper-slide中放图片 -->
+	    <div class="swiper-wrapper">
+	        <div class="swiper-slide pic1"></div>
+	        <div class="swiper-slide pic2"></div>
+	        <div class="swiper-slide pic3"></div>
+	    </div>
+	    <!-- 分页器 -->
+	    <div class="swiper-pagination"></div>
+	    
+	    <!-- 前进后退按钮（两边的切换图片按钮，如果不要，删除即可） -->
+	    <div class="swiper-button-prev"></div>
+	    <div class="swiper-button-next"></div>
+	</div>
+<script>        
+	var mySwiper = new Swiper ('.swiper-container', {
+		direction: 'horizontal',			/*水平滑动*/
+		autoplay: 3000,						/*自动滑动时间，毫秒。如果不要，删除即可*/
+		loop: true,							/*首尾循环滑动*/
+		pagination: '.swiper-pagination',	/*分页器*/
+
+		nextButton: '.swiper-button-next',	/*前进按钮,如果不要，删除即可*/
+		prevButton: '.swiper-button-prev'	/*后退按钮,如果不要，删除即可*/
+	})        
+</script>
+</body>
+</html>
