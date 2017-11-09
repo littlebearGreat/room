@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>我的验证</title>
+	<script src="style/js/jquery-1.11.1.js"></script>
+	<script src="style/js/jquery.validate.min.js"></script>
+</head>
+<body>
+	<form id="myForm" action="">
+		<p>
+			<label for="name">昵称：</label>
+			<input id="name" type="name" name="name">
+		</p>
+		<p>
+			<label for="account">账号：</label>
+			<input id="account" type="number" name="account">
+		</p>
+		<p>
+			<label for="email">邮箱：</label>
+			<input id="email" type="email" name="email">
+		</p>
+		<p>
+			<label for="password">密码：</label>
+			<input id="password" type="password" name="password">
+		</p>
+		<p>
+			<label for="confirm_password">密码：</label>
+			<input id="confirm_password" type="password" name="confirm_password">
+		</p>
+		<input type="submit" value="提交">
+	</form>
+</body>
+<script>
+	$(function(){
+		$('#myForm').validate({
+			rules: {
+				name: {
+					required: true,
+					minlength: 2,
+					maxlength: 12
+				},
+				account: {
+					required: true,
+					minlength: 6,
+					maxlength: 24
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				password: {
+					required: true,
+					minlength: 6,
+					maxlength: 24
+				},
+				confirm_password: {
+					required: true,
+					equalTo: '#password'
+				}
+			},
+			messages: {
+				name: {
+					required: '请输入昵称',
+					minlength: '最少2个字符',
+					maxlength: '不可以超过12个字符'
+				},
+				account: {
+					required: '请输入账号（由数字组成）',
+					minlength: '最少6个字符',
+					maxlength: '不可以超过24个字符'
+				},
+				email: '请输入邮箱',
+				password: {
+					required: '请输入密码',
+					minlength: '最短6个字符',
+					maxlength: '最长24个字符'
+				},
+				confirm_password: {
+					required: '请再次输入密码',
+					equalTo: '请输入相同的密码'
+				}
+			}
+		})
+
+	})
+	$.validator.setDefaults({
+		// 提交方法
+		submitHandler: function() {
+			alert("提交成功");
+		}
+	});
+
+</script>
+</html>

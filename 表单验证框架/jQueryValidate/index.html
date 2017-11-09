@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQuery validation表单验证</title>
+	<link rel="stylesheet" href="style/css/screen.css">
+	<!-- 此插件依赖于jquery -->
+	<script src="style/js/jquery-1.11.1.js"></script>
+	<script src="style/js/jquery.validate.js"></script>
+</head>
+<body>
+<h1 id="banner"><a href="http://jqueryvalidation.org/">jQuery Validation Plugin</a> Demo</h1>
+<div id="main">
+	<form class="cmxform" id="commentForm" method="get" action="">
+		<fieldset>
+			<legend>请输入你的名字、e-mail、个人主页地址、评价</legend>
+			<p>
+				<label for="cname">名称(必填, 至少两个字符)</label>
+				<input id="cname" name="name" minlength="2" type="text" required>
+			</p>
+			<p>
+				<label for="cemail">E-Mail (必填)</label>
+				<input id="cemail" type="email" name="email" required>
+			</p>
+			<p>
+				<label for="curl">个人主页(可选)</label>
+				<input id="curl" type="url" name="url">
+			</p>
+			<p>
+				<label for="ccomment">评价(必填)</label>
+				<textarea id="ccomment" name="comment" required></textarea>
+			</p>
+			<p>
+				<input class="submit" type="submit" value="提交">
+			</p>
+		</fieldset>
+	</form>
+	<form class="cmxform" id="signupForm" method="get" action="">
+		<fieldset>
+			<legend>表单</legend>
+			<p>
+				<label for="firstname">姓</label>
+				<input id="firstname" name="firstname" type="text">
+			</p>
+			<p>
+				<label for="lastname">名</label>
+				<input id="lastname" name="lastname" type="text">
+			</p>
+			<p>
+				<label for="username">昵称</label>
+				<input id="username" name="username" type="text">
+			</p>
+			<p>
+				<label for="password">密码</label>
+				<input id="password" name="password" type="password">
+			</p>
+			<p>
+				<label for="confirm_password">密码验证</label>
+				<input id="confirm_password" name="confirm_password" type="password">
+			</p>
+			<p>
+				<label for="email">Email</label>
+				<input id="email" name="email" type="email">
+			</p>
+			<p>
+				<label for="agree">请同意条款</label>
+				<input type="checkbox" class="checkbox" id="agree" name="agree">
+			</p>
+			<p>
+				<label for="newsletter">接收信息</label>
+				<input type="checkbox" class="checkbox" id="newsletter" name="newsletter">
+			</p>
+			<fieldset id="newsletter_topics">
+				<legend>提示：当接收信息没有勾选的时候，这里是隐藏的，勾选后这里要选择</legend>
+				<label for="topic_marketflash">
+					<input type="checkbox" id="topic_marketflash" value="marketflash" name="topic">每日要闻
+				</label>
+				<label for="topic_fuzz">
+					<input type="checkbox" id="topic_fuzz" value="fuzz" name="topic">购物折扣
+				</label>
+				<label for="topic_digester">
+					<input type="checkbox" id="topic_digester" value="digester" name="topic">科学成果
+				</label>
+			</fieldset>
+			<p>
+				<input class="submit" type="submit" value="提交">
+			</p>
+		</fieldset>
+	</form>
+</div>
+<script>
+	$.validator.setDefaults({
+		// 提交方法
+		submitHandler: function() {
+			alert("提交成功");
+		}
+	});
+
+	/**
+	 *	验证规则可以写在html标签内，也可以以参数形式传入验证函数中
+	 *	写在标签中，提示信息是插件内部配置好的提示信息，此插件提示信息是英文的
+	 *	以参数形式传入验证函数，可以配置提示信息。推荐此方法
+	 */
+	
+	$().ready(function() {
+		// 写在标签中
+		$("#commentForm").validate();
+
+		// 以参数形式传入验证函数中
+		$("#signupForm").validate({
+			rules: {	/*验证规则*/
+				firstname: "required",		/*键：标签的name；值：规则.  required-必填*/
+				lastname: "required",
+				username: {
+					required: true,			/*必填*/
+					minlength: 2			/*最短长度*/
+				},
+				password: {
+					required: true,
+					minlength: 5
+				},
+				confirm_password: {
+					required: true,
+					minlength: 5,
+					equalTo: "#password"	/*输入值必须与 #password 相同*/
+				},
+				email: {
+					required: true,
+					email: true				/*验证邮箱*/
+				},
+				topic: {
+					required: "#newsletter:checked",	/*如果#newsletter:checked  为真*/
+					minlength: 2
+				},
+				agree: "required"
+			},
+			messages: {		/*提示信息*/
+				firstname: "请填写姓氏",	/*键：name;值：提示信息;*/
+				lastname: "请填写名称",
+				username: {
+					required: "请填写昵称",			/*没填写时的提示信息*/
+					minlength: "昵称最少2个字符"	/*验证格式的提示信息*/
+				},
+				password: {
+					required: "请输入密码",
+					minlength: "密码最少5个字符长度"
+				},
+				confirm_password: {
+					required: "请再次输入密码",
+					minlength: "密码最少5个字符长度",
+					equalTo: "请输入相同的密码"		/*不相同时的提示信息*/
+				},
+				email: "请输入你的邮箱",
+				agree: "请同意我们的条款",
+				topic: "请选择至少两种推荐"
+			}
+		});
+
+		// 接受信息样式===开始=============================================
+		var newsletter = $("#newsletter");
+
+		// 接受信息样式初始化(操作class，样式可以由class任意设置)（下面的代码写法是大神写法....）
+		var inital = newsletter.is(":checked");
+		var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("hidden");
+		var topicInputs = topics.find("input").attr("disabled", !inital);
+
+		// 接受信息被选中时
+		newsletter.click(function() {
+			topics[this.checked ? "removeClass" : "addClass"]("hidden");
+			topicInputs.attr("disabled", !this.checked);
+		});
+		// 接受信息样式===结束=============================================
+	});
+</script>
+</body>
+</html>
