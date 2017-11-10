@@ -30,8 +30,37 @@
 		</p>
 		<input type="submit" value="提交">
 	</form>
+	<!-- 自定义验证 -->
+	<form id="custom" action="">
+		<p>
+			<label for="someNumber">输入数字：</label>
+			<input id="someNumber" type="text" name="someNumber">
+		</p>
+		<input type="submit" value="提交">
+	</form>
 </body>
 <script>
+
+	// 添加自定义验证，当然，可以添加多条
+	$.validator.addMethod('someNumber',function(value,element){
+		/*element是输入框这个标签。value是输入的值*/
+		var result = true;
+		if (value.length == 0) {
+			result = false;
+			return result;
+		};
+
+		for (var i = 0; i < value.length; i++) {
+			var va = Number(value.charAt([i]));
+			console.log(value.charAt([i]));
+			if (!va || va<3 || va >8) {
+				result = false;
+				break;
+			}
+		};
+		return result; 	/*如若返回的是true，就提交；否则就显示后面的提示信息*/
+	},'必填：只能输入数字，且所有单个数字不能大于8小于3');
+
 	$(function(){
 		$('#myForm').validate({
 			rules: {
@@ -81,15 +110,26 @@
 					equalTo: '请输入相同的密码'
 				}
 			}
-		})
+		});
 
-	})
+		// 自定义验证
+		$('#custom').validate({
+			rules: {
+				someNumber: 'someNumber'
+			}
+		});
+
+	});
+
+
 	$.validator.setDefaults({
 		// 提交方法
 		submitHandler: function() {
 			alert("提交成功");
 		}
 	});
+
+	
 
 </script>
 </html>
