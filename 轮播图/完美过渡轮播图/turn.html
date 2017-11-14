@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>过渡轮播图</title>
+	<script src="jquery.min.js"></script>
+	<style>
+		ul,li{margin: 0;padding: 0;}
+		ul{position: relative;width: 1440px;height: 900px;margin: 100px auto 0;list-style: none;}
+		li{position: absolute;z-index: 0;}
+		img{width: 100%;}
+	</style>
+</head>
+<body>
+	<ul class="banner">
+		<li >
+			<img src="images/1.jpg" alt="">
+		</li>
+		<li>
+			<img src="images/2.jpg" alt="">
+		</li>
+		<li>
+			<img src="images/3.jpg" alt="">
+		</li>
+		<li>
+			<img src="images/4.jpg" alt="">
+		</li>
+	</ul>
+<script>
+	$(function(){
+		/**
+		 *	作者：littleBearGreat
+		 *	思路：
+		 *		多张图，定位到一个地方。
+		 *		所有图片的z-index有三种可能：0/1/2。当前图片的z-index是2，前一张是1，其它是0；由js来调整层级。
+		 *		透明度设置：当前图片透明度为0，其它为1。
+		 *		用js动画来调整当前图片透明度：0-1
+		 */
+
+		var showNum = 1;	/*初始化当前图片序列号*/
+		var hideNum = 0;	/*初始化当前图片上一张的序列号*/
+
+		/*切换方法*/
+		function bannerTurn(){	
+			var li = $('.banner li');
+			if (showNum > li.length - 1) {
+				showNum = 0;
+			};
+			if (hideNum > li.length - 1) {
+				hideNum = 0;
+			};
+			li.eq(showNum).css({"z-index":2,"opacity":0}).siblings().css({"z-index":0,"opacity":1});
+			li.eq(hideNum).css('z-index',1);
+			li.eq(showNum).animate({opacity:1},2000);
+
+			showNum ++ ;
+			hideNum ++ ;
+		};
+
+		bannerTurn();
+		setInterval(bannerTurn,3000);
+	})
+</script>
+</body>
+</html>
