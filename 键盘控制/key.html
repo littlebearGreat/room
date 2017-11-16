@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>键盘事件</title>
+	<script src="jquery.min.js"></script>
+	<style>
+		.view{
+			width: 1200px;
+			height: 800px;
+			margin: 60px auto 0;
+			border: 2px solid #000;
+			position: relative;
+		}
+		.box{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 40px;
+			height: 40px;
+			background-color: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<div class="view">
+		<button class="setKey">设置按键</button>
+		<div class="box"></div>
+	</div>
+<script>
+	$(function(){
+
+		/**
+		 *	unicode编码对照：
+		 *		A-65	D-68	S-83	W-87	空格-32		↑-38	↓-40	←-37	→-39
+		 **/
+
+		// 所需的变量
+		var variable = {
+			left:0,
+			top:0
+		};
+
+		// 方法
+		var Method = {
+			keyDown: function(event){			/*键盘被按下，并返回按键的unicode编码*/
+				var keyNumber = null;
+				var ev = window.enent||event;
+				if (window.event) {	/*IE*/
+					keyNumber = ev.keyCode;
+				}else if (ev.wicth) {
+					keyNumber = ev.wicth;
+				};
+				// console.log(keyNumber);
+				// 返回键盘对应的unicode编码
+				return keyNumber;
+			},
+			setKey: function(){
+
+			},
+			move: function(){
+				var keyNum = this.keyDown(event);
+				if (keyNum == 37) {
+					console.log('左');
+					variable.left -=2;
+					if (variable.left <= 0) {
+						variable.left = 0;
+					};
+				}else if (keyNum == 38) {
+					console.log('上');
+					variable.top -=2;
+					if (variable.top <= 0) {
+						variable.top = 0;
+					};
+				}else if (keyNum == 39) {
+					console.log('右');
+					variable.left +=2;
+					if (variable.left >= 1200) {
+						variable.left = 1200;
+					};
+				}else if (keyNum == 40) {
+					console.log('下');
+					variable.top +=2;
+					if (variable.top >= 800) {
+						variable.top = 800;
+					};
+				};
+				console.log(variable);
+				this.position();
+			},
+			position: function(){
+				$('.box').css({'left':variable.left,'top':variable.top});
+			}
+		};
+
+		$('body').keydown(function(event){
+			Method.move(event);
+		})
+	})
+</script>
+</body>
+</html>
