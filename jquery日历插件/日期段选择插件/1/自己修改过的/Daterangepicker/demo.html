@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>日期选择插件</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/daterangepicker.css">
+	<script src="jquery.js"></script>
+	<script src="js/daterangepicker.js"></script>
+	<style>
+		.ipt{
+			width: 300px;
+			height: 40px;
+			font-size: 16px;
+			color: #333;
+			line-height: 40px;
+			padding-left: 10px;
+			margin-top: 100px;
+			margin-left: 300px;
+		}
+	</style>
+</head>
+<body>
+	<input class="ipt" type="text" readonly="readonly">
+	<button class="btn">GO</button>
+<script>
+	$(function(){
+		$('.ipt').daterangepicker({
+			applyClass : 'btn-sm btn-success',
+			cancelClass : 'btn-sm btn-default',
+			locale: {
+				applyLabel: '确认',
+				cancelLabel: '取消',
+				fromLabel : '起始时间',
+				toLabel : '结束时间',
+				customRangeLabel : '自定义',
+				firstDay : 1
+			},
+			ranges : {
+				//'最近1小时': [moment().subtract('hours',1), moment()],
+				'今日': [moment().startOf('day'), moment()],
+				'昨日': [moment().subtract('days', 1).startOf('day'), moment().subtract('days', 1).endOf('day')],
+				'最近7日': [moment().subtract('days', 6), moment()],
+				'最近30日': [moment().subtract('days', 29), moment()],
+				'本月': [moment().startOf("month"),moment().endOf("month")],
+				'上个月': [moment().subtract(1,"month").startOf("month"),moment().subtract(1,"month").endOf("month")]
+			},
+			opens : 'right',	// 日期选择框的弹出位置(取值有：left/center/right)
+			separator : ' 至 ',
+			showWeekNumbers : true,		// 是否显示第几周
+
+
+			//timePicker: true,
+			//timePickerIncrement : 10,	// 时间的增量，单位为分钟
+			//timePicker12Hour : false,	// 是否使用12小时制来显示时间
+
+
+			maxDate : moment(new Date()),	// 允许选择的最大日期(这里我设置的是不能选择未来日期)
+			dateLimit : {					/*配置选择的时间间隔*/
+				layerMsg : false,			/*使用layer弹出层进行提示，必须依赖layer插件*/
+				layerMsgTime : 500,			/*layer提示层显示时间，单位：ms，格式：number*/
+
+				alertMsg : true,			/*使用alert进行提示（在layerMsg为false或不配置，且alertMsg为true时才进行提示）*/
+				days:31,					/*起止时间最大间隔天数*/
+			},
+			format: 'YYYY-MM-DD'
+
+		}, function(start, end, label) { // 格式化日期显示框
+			$('#beginTime').val(start.format('YYYY-MM-DD'));
+			$('#endTime').val(end.format('YYYY-MM-DD'));
+		});
+
+		$('.btn').click(function(){
+			var t = $('.ipt').val();
+			console.log(t);
+		})
+	})
+</script>
+</body>
+</html>
