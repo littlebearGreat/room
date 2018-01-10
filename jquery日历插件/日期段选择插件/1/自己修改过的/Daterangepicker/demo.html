@@ -47,13 +47,13 @@
 				'上个月': [moment().subtract(1,"month").startOf("month"),moment().subtract(1,"month").endOf("month")]
 			},
 			opens : 'right',	// 日期选择框的弹出位置(取值有：left/center/right)
-			separator : ' 至 ',
+			separator : ' 至 ',	// 输入框中两个时间段时间段之间的连接字符串
 			showWeekNumbers : true,		// 是否显示第几周
 
 
 			// 是否显示时间（小时、分钟）
 			// timePicker: true,
-			// timePickerIncrement : 10,	// 时间的增量，单位为分钟
+			// timePickerIncrement : 10,	// 时间的增量，单位为分钟（分钟下拉框中，可选择分钟的最小间隔）
 			// timePicker12Hour : false,	// 是否使用12小时制来显示时间
 
 
@@ -65,7 +65,8 @@
 				alertMsg : true,			/*使用alert进行提示（在layerMsg为false或不配置，且alertMsg为true时才进行提示）*/
 				days:31,					/*起止时间最大间隔天数*/
 			},
-			format: 'YYYY-MM-DD'
+			format: 'YYYY-MM-DD'			// 日期格式  年月日
+			// format: 'YYYY-MM-DD HH:mm'      // 日期格式  年月日 小时 分钟
 
 		}, function(start, end, label) { // 格式化日期显示框
 			$('#beginTime').val(start.format('YYYY-MM-DD'));
