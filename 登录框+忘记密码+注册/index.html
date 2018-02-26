@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>弹出框</title>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+	</head>
+	<body>
+		<input type="button" value="登录" onclick="showBox('loginBox')"/>
+		<input type="button" value="注册"  onclick="showBox('registerBox')"/>
+		<input type="button" name="" id="" value="注册成功" onclick="regSuccessBox('registerSuccess')" />
+		<input type="button" onclick="showBox('fixPwdSuc')" value="修改密码成功" />
+		<!--登录弹出框 start-->
+		<div class="log-box" id="loginBox" >	
+			<div class="login-box">	
+				<div class="close-box"><span class="icon-close" onclick="closeBox('loginBox')"></span></div>
+				<div class="logo"><img src="img/logo.png" height="50"/></div>
+				<div class="logo-title">登录帐号</div>
+				<div class="login-form">
+					<form onsubmit="return loginCheck();">
+						<div class="input-box bor-t">
+							<label class="input-name">手机号码</label>
+							<input type="text" class="input" placeholder="请输入您的手机号码" id="loginMobile" onblur="checkMobile('loginMobile')"/>
+							<span class="txt-pro">手机号码格式有误</span>
+						</div>
+						<div class="input-box">
+							<label class="input-name">密码</label>
+							<input type="password" class="input" placeholder="请输入您的登录密码"/>
+						</div>
+						<input type="submit" class="login-btn" value="登录"/>
+						<div class="login-other">
+							<input type="checkbox"/>下次自动登录
+							<a href="fixPwd.html" class="fr">忘记密码</a>
+						</div>
+						<div class="both"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--登录弹出框 end-->
+		<!--注册弹出框 start-->
+		<div class="log-box" id="registerBox">	
+			<div class="register-box">	
+				<div class="close-box"><span class="icon-close" onclick="closeBox('registerBox')"></span></div>
+				<div class="logo"><img src="img/logo.png" height="50"/></div>
+				<div class="logo-title">注册帐号</div>
+				<div class="login-form">
+					<form onsubmit="return registerCheck();">
+						<div class="input-box bor-t">
+							<label class="none input-name">手机号码</label>
+							<input type="text" class="input" placeholder="手机号码将作为登录账号" id="regMobile" onblur="checkMobile('regMobile')"/>
+							<span class="txt-pro">手机号码格式有误</span>
+						</div>
+						<div class="input-box">
+							<input type="password" class="input" placeholder="请输入您收到的密码"/>
+							<input type="button" class="send-code" id="sendCode" value="获取密码"/>
+						</div>
+						<input type="submit" class="login-btn" value="注册"/>
+						<div class="login-other">
+							已有帐号
+							<a href="#">登录</a>
+						</div>
+						<div class="both"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--注册弹出框 end-->
+		
+		<!--注册成功 Start-->
+		<div class="log-box" id="registerSuccess">
+			<div class="log-success">
+				<div class="close-box"><span class="icon-close" onclick="closeBox('registerSuccess')"></span></div>
+				<div class="suc-img"><img src="img/tick2.png" alt="" /></div>
+				<div class="suc-title">注册成功</div>
+				<div class="suc-pro mt50 mb50">恭喜您注册成功，<span class="num">3</span>秒后进入到首页</div>
+			</div>
+		</div>
+		<!--注册成功 end-->
+		
+		<!--修改密码成功提示 start-->
+		<div class="log-box" id="fixPwdSuc">
+			<div class="log-success">
+				<div class="close-box"><span class="icon-close" onclick="closeBox('fixPwdSuc')"></span></div>
+				<div class="suc-img"><img src="img/tick2.png" alt="" /></div>
+				<div class="suc-title">注册成功</div>
+				<div class="suc-pro">修改密码成功，请重新登录</div>
+				<div class="return-box">
+					<a href="#" class="rehome-btn">返回登录</a>
+				</div>
+			</div>
+		</div>
+		<!--修改密码成功提示  end-->
+
+		<script src="js/jquery-1.4.4.js"></script>
+		<script type="text/javascript" src="js/login.js"></script>
+	</body>
+</html>
