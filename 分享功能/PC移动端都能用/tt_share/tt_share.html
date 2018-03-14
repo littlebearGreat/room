@@ -1,0 +1,40 @@
+<!-- tt_share.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>分享插件</title>
+	<script src="tt_share.js"></script>
+</head>
+<body>
+	<div id="shareBar"></div>
+	<script>
+
+		/**
+		 *	分享插件用法说明：
+		 *		1.PC端
+		 *			运行函数 tt_share(id,jsonData)，即可；
+		 *			tt_share接收两个参数：
+		 *				<a>.	id(必须，字符串格式),一个标签的id，分享按钮会放在此标签内；
+		 *				<b>.	jsonData(json格式，非必须),此json用来配置分享内容，下面是json的格式及其属性
+		 *							json = {
+		 *								url:'',		分享的网址
+		 *								picUrl:'',	分享的附加图片的网址
+		 *								text:''		分享的内容（标题）
+		 *								};
+		 *		
+		 *		
+		 *		2.移动端
+		 *			在点击方法中直接运行tt_share()函数即可，不接收任何参数(传参也无用)
+		 */
+		window.onload = function(){
+			var data = {
+				url 	: 'https://www.baidu.com/',
+				picUrl 	: 'http://misc.360buyimg.com/mtd/pc/index_2017/2.0.0/static/images/sprite.head.png',
+				text 	: '是京东吗？'
+			};
+			tt_share('shareBar',data);
+		}
+	</script>
+</body>
+</html>
