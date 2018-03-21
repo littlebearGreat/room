@@ -1,0 +1,57 @@
+
+
+document.documentElement		网页的根元素（就是html）
+
+-----------------------------------------------------------------------
+------------------------------------------------------------------------
+js的 obj.getBoundingClientRect()
+	这个方法返回一个矩形对象，包含6个属性：left、top、right、bottom分别表示元素各边与页面边框的距离。
+	width、height只有IE9及其以上才支持。
+var box = document.getElementById("box");	获取元素
+
+alert(box.getBoundingClientRect().top);		元素距离页面上边的距离
+alert(box.getBoundingClientRect().right);
+alert(box.getBoundingClientRect().bottom);
+alert(box.getBoundingClientRect().left);
+
+alert(box.getBoundingClientRect().width);	元素的宽度
+alert(box.getBoundingClientRect().height);	元素的高度
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+手机端必需代码：
+<meta name="viewport" content="width=device-widht,initial-scale=1.0,suer-scalable=1.0,maximum-scale=1.0,minimum-scale=1.0">
+(device-widht:设备宽度；initial-scale：缩放；suer-scalable：用户缩放；1.0都是不允许缩放)
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+适配各种移动端的确定根元素字号的代码：
+
+(function(){
+			function w () {
+				var r = document.documentElement;
+				var a = r.getBoundingClientRect().width;
+				if (a > 750) {
+					a = 750;
+				};
+				rem = a / 7.5;
+				r.style.fontSize = rem + 'px';
+			};
+			var t;
+			w();
+			window.addElementListener('resize',function(){
+				clearTimeout(t);
+				t = setTimeout(w,300)
+			},false);
+		})();
+---------
+用括号把自己包起来的函数，后面在加上括号执行，这样的函数叫做：自运行函数；	如(function(){})();
+
+手机屏幕的宽度不可能大于750的
+如果窗口改变的话，300ms后再运行一次w函数，再获取一次宽度
+
+
+
+
+
+
+

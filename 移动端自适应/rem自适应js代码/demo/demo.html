@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 移动端：此行meta必须添加 -->
+	<meta name="viewport" content="width=device-widht,initial-scale=1.0,suer-scalable=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<title>手机代码</title>
+</head>
+<body>
+<script type="text/javascript">
+	// 自适应函数，css宽度用rem写，1rem=100px
+	(function () {
+        var b = document.documentElement,
+        a = function () {
+            var a = b.getBoundingClientRect().width;
+            b.style.fontSize = (a/设计稿宽度) * 100 + "px"
+        }, c = null;
+        window.addEventListener("resize", function () {
+            clearTimeout(c);
+            c = setTimeout(a, 300)
+        });
+        a()
+    })();
+</script>
+</body>
+</html>

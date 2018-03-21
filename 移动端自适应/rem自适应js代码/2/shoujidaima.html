@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-widht,initial-scale=1.0,suer-scalable=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<title>手机代码</title>
+	<script type="text/javascript">
+		(function(){
+			function w () {
+				var r = document.documentElement;
+				var a = r.getBoundingClientRect().width;
+				if (a > 750) {
+					a = 750;
+				};
+				rem = a / 7.5;
+				r.style.fontSize = rem + 'px';
+			};
+			var t;
+			w();
+			window.addElementListener('resize',function(){
+				clearTimeout(t);
+				t = setTimeout(w,300)
+			},false);
+		})();
+	</script>
+</head>
+<body>
+</body>
+</html>
